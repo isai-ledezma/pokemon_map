@@ -43,8 +43,8 @@ map_height = len(obstacle_definition)
 map_width = len(obstacle_definition[0])
 
 # tail
-tail = []  # tail model is pokemon model
-tail_length = 0
+collected_pokemons_list = []
+new_pokemon = []
 collected_pokemons = 0
 
 # map objets
@@ -99,6 +99,8 @@ while not end_game:
     print(f'{my_position[pos_x]} {my_position[pos_y]}')
 
     #var for the war
+    enemy_life = 100
+    my_pokemon_life = 100
     text_in_war = None
     pokemon_probability = random.randint(1, 3)
 
@@ -106,6 +108,8 @@ while not end_game:
         print('has obtenido un nuevo pokemon')
         obstacle_definition[my_position[pos_y]][my_position[pos_x]] = clear_space
         pokemon_name = input('que nombre le deseas poner?')
+        new_pokemon = [pokemon_name, 100] #100 is the life of pokemon
+        collected_pokemons_list.append(new_pokemon)
     elif obstacle_definition[my_position[pos_y]][my_position[pos_x]] == obligatory_enemy_spawner \
             or my_position in enemys:
         text_in_war = 'enemigo'
@@ -114,15 +118,30 @@ while not end_game:
         probability_of_spawn = random.randint(1, 100)
         if 80 <= probability_of_spawn <= 90:
             if pokemon_probability == 1:
-                text_in_war = 'pikachu'
+                text_in_war = 'pikachu salvaje'
             elif pokemon_probability == 2:
-                text_in_war = 'charmander'
+                text_in_war = 'charmander salvaje'
             elif pokemon_probability == 3:
-                text_in_war = 'treeko'
-            print(f'ohhhhh no te has encontrado un {text_in_war} salvaje')
+                text_in_war = 'treeko salvaje'
+            print(f'ohhhhh no te has encontrado un {text_in_war} ')
 
 #space for the future war
     if text_in_war:
+        while True:
+            enemy_atac = random.randint(1, 3)
+            if enemy_atac == 1:
+                enemy_atac == 'golpe'
+                my_pokemon_life -= 10
+            elif enemy_atac == 2:
+                enemy_atac = 'patada'
+                my_pokemon_life -= 20
+            elif enemy_atac == 3:
+                enemy_atac = 'cachetada'
+                my_pokemon_life -= 25
+            print(f'el {text_in_war} ha usado {enemy_atac}')
+            print(f'te quedan {my_pokemon_life} puntos de vida')
+            break
+
 
         text_in_war = None
 
