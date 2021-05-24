@@ -28,13 +28,14 @@ map_definition = '''\
 -----------------                          ]\
 '''
 
-'''
- /\
-/  \
-  |
-draw your map there
 
-'''
+#  /\
+# /  \
+#  ||
+#  ||
+#draw your map there
+
+
 
 # map like variable
 obstacle_definition = [list(row) for row in map_definition.split("\n")]
@@ -85,8 +86,6 @@ while len(enemys) <= num_of_enemys:
                     if new_enemy not in enemys and len(enemys) <= num_of_enemys:
                         enemys.append(new_enemy)
 
-print(enemys)
-print(obstacle_definition)
 
 # main loop
 while not end_game:
@@ -101,7 +100,9 @@ while not end_game:
 
     if obstacle_definition[my_position[pos_y]][my_position[pos_x]] == '*':
         print('has obtenido un nuevo pokemon')
-
+        print(obstacle_definition[my_position[pos_x]][my_position[pos_y]])
+        print(f'{my_position[pos_x]} {my_position[pos_y]}')
+        pokemon_name = input('que nombre le deseas poner?')
 
     for coordinate_y in range(map_height):
         print('|', end='')
@@ -127,8 +128,6 @@ while not end_game:
                 char_to_draw = player_model
             print(char_to_draw, end='')
         print('|')
-
-
     print('+' + wall_horizontal * map_width + '+')
     movement = readchar.readchar().decode()
     print(movement)
