@@ -97,17 +97,37 @@ while not end_game:
     scrub_model = '+'\
     ''')
     print(f'{my_position[pos_x]} {my_position[pos_y]}')
+
+    #var for the war
+    text_in_war = None
+    pokemon_probability = random.randint(1, 3)
+
     if obstacle_definition[my_position[pos_y]][my_position[pos_x]] == pokemon_model:
         print('has obtenido un nuevo pokemon')
         obstacle_definition[my_position[pos_y]][my_position[pos_x]] = clear_space
         pokemon_name = input('que nombre le deseas poner?')
     elif obstacle_definition[my_position[pos_y]][my_position[pos_x]] == obligatory_enemy_spawner \
             or my_position in enemys:
+        text_in_war = 'enemigo'
         print('ohhh noooo te has encontrado con un enemigo')
     elif obstacle_definition[my_position[pos_y]][my_position[pos_x]] == scrub_model:
         probability_of_spawn = random.randint(1, 100)
         if 80 <= probability_of_spawn <= 90:
-            print('ohhhhh no te has encontrado un pokemon salvaje')
+            if pokemon_probability == 1:
+                text_in_war = 'pikachu'
+            elif pokemon_probability == 2:
+                text_in_war = 'charmander'
+            elif pokemon_probability == 3:
+                text_in_war = 'treeko'
+            print(f'ohhhhh no te has encontrado un {text_in_war} salvaje')
+
+#space for the future war
+    if text_in_war:
+
+        text_in_war = None
+
+
+
 
     print('+' + wall_horizontal * map_width + '+')
     for coordinate_y in range(map_height):
