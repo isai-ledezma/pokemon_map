@@ -100,7 +100,7 @@ while not end_game:
 
     #var for the war
     enemy_life = 100
-    my_pokemon_life = 100
+    selectec_pokemon = 0
     text_in_war = None
     pokemon_probability = random.randint(1, 3)
 
@@ -127,19 +127,27 @@ while not end_game:
 
 #space for the future war
     if text_in_war:
+        for c in collected_pokemons_list:
+            print(f'[{c[0]}, 100 pts de vida]')
+        selectec_pokemon = int(input('que pokemon deseas usar?')) - 1
+
         while True:
+            print(f'pokemon actual {collected_pokemons_list[selectec_pokemon][0]} con ' +
+                  f'{collected_pokemons_list[selectec_pokemon][1]} puntos de vida')
+
+
             enemy_atac = random.randint(1, 3)
             if enemy_atac == 1:
                 enemy_atac == 'golpe'
-                my_pokemon_life -= 10
+                collected_pokemons_list[selectec_pokemon][1] -= 10
             elif enemy_atac == 2:
                 enemy_atac = 'patada'
-                my_pokemon_life -= 20
+                collected_pokemons_list[selectec_pokemon][1] -= 20
             elif enemy_atac == 3:
                 enemy_atac = 'cachetada'
-                my_pokemon_life -= 25
+                collected_pokemons_list[selectec_pokemon][1] -= 25
             print(f'el {text_in_war} ha usado {enemy_atac}')
-            print(f'te quedan {my_pokemon_life} puntos de vida')
+            print(f'te quedan {collected_pokemons_list[selectec_pokemon][1]} puntos de vida')
             break
 
 
