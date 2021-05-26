@@ -134,6 +134,7 @@ while op == 's' or op == 'S':
                     print(f'{counter}: [{c[0]}, {c[1]} pts de vida]')
                     counter += 1
                 selectec_pokemon = int(input('que pokemon deseas usar?')) - 1
+                os.system('cls')
                 if selectec_pokemon in range(0, counter - 1):
                     break
                 else:
